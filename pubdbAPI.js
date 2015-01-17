@@ -11,8 +11,8 @@ app.set('view engine', 'jade');
 
 // Database
 var mongo = require('mongoskin');
-var db = mongo.db("mongodb://prostuff.net:27017/pubdb", {native_parser: true});
-var dbdev = mongo.db("mongodb://prostuff.net:27017/pubdb-dev", {native_parser: true});
+var db = mongo.db("mongodb://yourdomain.com:27017/pubdb", {native_parser: true});
+var dbdev = mongo.db("mongodb://yourdomain.com:27017/pubdb-dev", {native_parser: true});
 
 
 // Make our db accessible for cross domain queries
@@ -34,7 +34,6 @@ router.get('/authors', function (req, res) {
     var query = {};
     var options = {};
     var pubCount = 0;
-    var iterate = false;
 
     if (typeof dev !== 'undefined' && dev !== null) {
         var db = req.dbdev;
@@ -114,7 +113,6 @@ router.get('/search', function (req, res) {
     var keywords = req.query.keywords;
     var award = req.query.award;
     var count = req.query.count;
-    var www = req.query.www;
     var dev = req.query.dev;
 
 
