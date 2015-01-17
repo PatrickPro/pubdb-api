@@ -1,0 +1,66 @@
+extends layout
+
+block content
+  h1= title
+  p How to use #{title}:
+
+
+  table
+    thead
+      tr: th api: "/authors" GET-params
+    tbody
+    tr
+      td name
+      td Author name
+    tr
+      td format
+      td Output format ("compact" for fields name, "names" for names only OR "count" for authors publication count)
+
+   div
+
+
+  table
+    thead
+      tr: th api: "/search" GET-params
+    tbody
+    tr
+      td title
+      td Publication title (single or multiple values, comma seperated, order as occuring in title)
+    tr
+      td author
+      td Full name of author (single or multiple values, comma seperated)
+    tr
+      td year
+      td Publication year (single or multiple values, comma seperated or range "2000-2010")
+    tr
+      td month
+      td Publication month (single or multiple values, comma seperated or range "01-05")
+    tr
+      td type
+      td Type of publication (single or multiple values, comma seperated: conference, journal, technical, workshop, thesis, proceedings-book)
+    tr
+      td keywords
+      td Keyword of publication (single or multiple values, comma seperated)
+    tr
+      td award
+      td Publication awards (none, winner or nominee)
+    tr
+      td count
+      td returns count() of query if set to "true"
+    tr
+      td dev
+      td use latest API if set to "true"
+
+
+  strong Examples:
+  br
+  br
+  em [Get pubs from Andreas Butz together with Sebastian Loehmann from 2014 with keywords "secondary tasks"]:
+  p http://yourdomain.com:3000/search?author=Andreas%20Butz&author=Sebastian%20Loehmann&year=2014&keywords=secondary%20tasks
+  br
+  em [Get all author names]:
+  p http://yourdomain.com:3000/authors?format=names
+  br
+  em [Get publication count per author]:
+  p http://yourdomain.com:3000/search?author=Andreas%20Butz&count=true&year=2000-2010
+
